@@ -4,25 +4,19 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import * as TodoActions from '../actions';
+import Header from '../components/Header';
+import MainSection from '../components/MainSection';
 
-const App = ({ todos }) => {
-  const renderTodo = todo => (
-    <li key={todo.id}>
-      {todo.text} {todo.id}
-    </li>
-  );
-
-  return (
-    <div>
-      <h2>Todos</h2>
-      <input type="text" placeholder="Type a todo" />
-      {todos.map(renderTodo)}
-    </div>
-  );
-};
+const App = ({ todos, actions }) => (
+  <div>
+    <Header addTodo={actions.addTodo} />
+    <MainSection todos={todos} actions={actions} />
+  </div>
+);
 
 App.propTypes = {
   todos: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
