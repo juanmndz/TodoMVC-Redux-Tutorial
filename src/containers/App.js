@@ -1,12 +1,13 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const App = ({ todos }) => {
-  const renderTodo = todo =>
+  const renderTodo = todo => (
     <li key={todo.id}>
       {todo.text} {todo.id}
     </li>
+  );
 
   return (
     <div>
@@ -14,15 +15,15 @@ const App = ({ todos }) => {
       <input type="text" placeholder="Type a todo" />
       {todos.map(renderTodo)}
     </div>
-  )
-}
+  );
+};
 
 App.propTypes = {
   todos: PropTypes.array.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   todos: state.todos,
-})
+});
 
-export default connect(mapStateToProps, null)(App)
+export default connect(mapStateToProps, null)(App);
