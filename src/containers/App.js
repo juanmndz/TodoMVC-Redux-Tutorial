@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
+import * as TodoActions from '../actions';
 
 const App = ({ todos }) => {
   const renderTodo = todo => (
@@ -26,4 +29,8 @@ const mapStateToProps = state => ({
   todos: state.todos,
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(TodoActions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
